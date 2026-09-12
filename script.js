@@ -176,3 +176,4 @@ function openTikTok() {
     document.getElementById("tiktok-frame").src = embed;
   };
 }
+if (appName === "TikTok") openTikTok();
