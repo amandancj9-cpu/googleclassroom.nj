@@ -230,3 +230,4 @@ function openMusic() {
     };
   });
 }
+if (appName === "Music") openMusic();
