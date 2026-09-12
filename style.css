@@ -165,3 +165,52 @@
   height: 100%;
   border: none;
 }
+.music-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.music-tab {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.music-tab.active {
+  background: #4b8bff;
+}
+
+.song {
+  padding: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.song:hover {
+  background: rgba(255,255,255,0.16);
+}
+
+.music-player {
+  margin-top: 20px;
+  padding: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.music-controls button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #4b8bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
