@@ -132,3 +132,36 @@
   border: none;
   width: 100%;
 }
+.tiktok-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#tiktok-url {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: white;
+}
+
+#tiktok-load {
+  padding: 8px;
+  border-radius: 8px;
+  background: #ff2c55;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+#tiktok-frame-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+#tiktok-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
