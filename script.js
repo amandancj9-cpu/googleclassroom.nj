@@ -98,3 +98,58 @@ function makeWindowDraggable(win, handle) {
     document.removeEventListener("mouseup", onUp);
   }
 }
+function openBrowser() {
+  openAppWindow("Solara Browser", `
+    <div class="browser">
+      <div class="browser-urlbar">
+        <input id="browser-url" type="text" placeholder="Search or enter a URL">
+        <button id="browser-go">Go</button>
+      </div>
+
+      <div class="browser-home">
+        <h1 class="browser-title">Solara</h1>
+        <p class="browser-sub">your OS to the web</p>
+
+        <div class="browser-search">
+          <input id="browser-ddg" type="text" placeholder="Search DuckDuckGo">
+          <button id="browser-ddg-btn">Search</button>
+        </div>
+      </div>
+
+      <iframe id="browser-frame" class="browser-frame" src="" style="display:none;"></iframe>
+    </div>
+  `);
+
+  // URL bar navigation
+  document.getElementById("browser-go").onclick = () => {
+    const url = document.getElementById("browser-url").value.trim();
+    loadBrowserURL(url);
+  };
+
+  // DuckDuckGo search
+  document.getElementById("browser-ddg-btn").onclick = () => {
+    const q = document.getElementById("browser-ddg").value.trim();
+    if (q.length > 0) {
+      loadBrowserURL("https://duckduckgo.com/?q=" + encodeURIComponent(q));
+    }
+  };
+}
+
+function loadBrowserURL(url) {
+  const frame = document.getElementById("browser-frame");
+  const home = document.querySelector(".browser-home");
+
+  // If user types only text, treat it as a search
+  if (!url.includes(".")) {
+    url = "https://duckduckgo.com/?q=" + encodeURIComponent(url);
+  }
+
+  // Add https:// if missing
+  if (!url.startsWith("http")) {
+    url = "https://" + url;
+  }
+
+  frame.src = url;
+  frame.style.display = "block";
+  home.style.display = "none";
+}
