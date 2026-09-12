@@ -177,3 +177,56 @@ function openTikTok() {
   };
 }
 if (appName === "TikTok") openTikTok();
+function openMusic() {
+  openAppWindow("Music", `
+    <div class="music-tabs">
+      <button class="music-tab active" data-tab="discover">Discover</button>
+      <button class="music-tab" data-tab="library">Library</button>
+    </div>
+
+    <div id="music-discover" class="music-section">
+      <div class="song" data-src="songs/house_of_memories.mp3">House of Memories — Panic! At The Disco</div>
+      <div class="song" data-src="songs/beautiful_things.mp3">Beautiful Things — Megan Moroney</div>
+      <div class="song" data-src="songs/house_arrest_tingz.mp3">House Arrest Tingz — YoungBoy Never Broke Again</div>
+      <div class="song" data-src="songs/cant_love_you_anymore.mp3">I Can't Love You Anymore — Ella Langley</div>
+    </div>
+
+    <div id="music-library" class="music-section" style="display:none;">
+      <p>Your saved songs will appear here.</p>
+    </div>
+
+    <div class="music-player">
+      <span id="music-now">Nothing playing</span>
+      <div class="music-controls">
+        <button id="music-play">▶</button>
+        <button id="music-stop">■</button>
+      </div>
+    </div>
+  `);
+
+  let audio = new Audio();
+
+  document.querySelectorAll(".song").forEach(song => {
+    song.onclick = () => {
+      const src = song.dataset.src;
+      audio.src = src;
+      audio.play();
+      document.getElementById("music-now").textContent = song.textContent;
+    };
+  });
+
+  document.getElementById("music-play").onclick = () => audio.play();
+  document.getElementById("music-stop").onclick = () => audio.pause();
+
+  // Tabs
+  document.querySelectorAll(".music-tab").forEach(tab => {
+    tab.onclick = () => {
+      document.querySelectorAll(".music-tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const name = tab.dataset.tab;
+      document.querySelectorAll(".music-section").forEach(sec => sec.style.display = "none");
+      document.getElementById("music-" + name).style.display = "block";
+    };
+  });
+}
