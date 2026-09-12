@@ -153,3 +153,26 @@ function loadBrowserURL(url) {
   frame.style.display = "block";
   home.style.display = "none";
 }
+if (appName === "Browser") openBrowser();
+function openTikTok() {
+  openAppWindow("TikTok", `
+    <div class="tiktok-container">
+      <input id="tiktok-url" type="text" placeholder="Paste TikTok link">
+      <button id="tiktok-load">Load</button>
+
+      <div id="tiktok-frame-wrapper">
+        <iframe id="tiktok-frame" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+  `);
+
+  document.getElementById("tiktok-load").onclick = () => {
+    const url = document.getElementById("tiktok-url").value.trim();
+    if (!url) return;
+
+    // TikTok embed format
+    const embed = "https://www.tiktok.com/embed/v2/" + url.split("/").pop();
+
+    document.getElementById("tiktok-frame").src = embed;
+  };
+}
